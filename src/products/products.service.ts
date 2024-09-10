@@ -44,15 +44,18 @@ export class ProductsService extends PrismaClient implements OnModuleInit {
   }
 
   async findOne(id: number) {
+
+    
+
     const product = await this.product.findFirst({
       where: {
         id, deleted_at: null
       }
     });
-
     if (!product) {
       throw new NotFoundException(`Product #${id} not found`);
     }
+    return product;
   }
 
   async update(id: number, updateProductDto: UpdateProductDto) {
